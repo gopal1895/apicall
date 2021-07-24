@@ -24,7 +24,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-
   Future<void> getDataFromSharedPrefs() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     setState(() {
@@ -44,6 +43,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
@@ -63,8 +63,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-                  decoration: BoxDecoration(
-                      ),
+                  decoration: BoxDecoration(),
                 ),
                 ListTile(
                   title: Text("Dashboard"),
@@ -76,15 +75,11 @@ class _HomePageState extends State<HomePage> {
                 ListTile(
                   title: Text("Logout"),
                   onTap: () async {
-                     SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
-                        prefs.setString("email", '');
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Login(
-                                  
-                                )));
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.setString("email", '');
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => Login()));
                   },
                 ),
               ],
